@@ -125,7 +125,7 @@ ylabel('fake mV')
 % 3-
 [S,f]=mtspectrumc(LFP,params); 
 
-%4- 
+% 4- 
 figure; 
 plot(f,S,'DisplayName','Fake Spectrogram');
 xlabel('fake frequencies')
