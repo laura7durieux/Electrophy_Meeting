@@ -13,7 +13,7 @@
 %     DO THAT
 % end
 
-% NOte : Be carful usinf loops for two things : 1) you need to make sur
+% NOte : Be carful using loops for two things : 1) you need to make sur
 % that your loop have a end, without that matlab will continue to do the
 % same thing over and over. 2) loops are slow to run, so somethime
 % you can simply use matrix manipulation for doing the same thing !
@@ -116,7 +116,7 @@ time  = 0:1/srate:60;
 % 
 % 
 % 
-
+%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CORRECTION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Exercice 1
