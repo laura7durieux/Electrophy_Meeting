@@ -65,7 +65,10 @@
 % validate even if the third is also true ! Why ? Because the order matters
 % ! Matlab will take the 1 one true and go after directly to the end !
 
+%%
 %%%%%%% EXERCICE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% EXERCICE 1
 % Now let's try with something more usefull than the name or number of my
 % pets ;-)
 % let's recreate our fake data !
@@ -112,18 +115,71 @@ SleepTrack = SleepTrack(1,1:length(LFP));
 % plot SleepTrack, LFPAW (=1), and LFPCW (=2) on the same plot
 
 
+% EXERCICE 2
 
+% Create again our fake "better" LFP track but this time : 
+% Try to make it less "predictivable". In other word the goal is 
+% apply diferent freq and amplitude depending of the time also !
 
+% This time we will use 100 second for time (it will be easier for the
+% random calculation
+srate = 1000; % sampling rate of 1 kHz
+time  = 0:1/srate:100; 
 
+% Your turn
+% 1- create a frequency vector containing 100 random number between 0 and 
+% 100. <make the frequencies being integer number (without
+% digit after the decimal point)
 
+% 2- Do the same with amplitude 
 
+% 3- Now we will create our fake LFP but changing with time too
+% that we will first need a matrice full of 0 as the same length that the 
+% output we will have. 
 
+% Then  for each reap needs to have a new random start point and new random
+% end point 
 
+% Then you will need a condition loop for being for in which way to start
+% and stop (because logicale) if your start and stop point are giving a
+% vector like [3 2 1] it will not works as position ... You need to have [1
+% 2 3].
 
+% And put the sine_wave you calculate as before (script loops) but make it
+% take into the new matrix only the start and stop rand points !
 
+% Normaly , if you succed, you should just sum the output matrice as before and you will 
+% have your fake data 
 
+% First plot as
+figure
+plot(time,SW_way_better)
+xlim([40 41])
 
+% the do it without the axes limitation
+
+% What you think ?
+% yes it quite sysmetric but with the zoome in it seems really close to an
+% oscillation isn't it ?
+
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+
+%%
 %%%%%%%%% CORECTION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Exercice 1
 % 1-
 LFP3 = zeros(1,length(LFP));
 
@@ -147,6 +203,43 @@ plot(LFPCW,'g','DisplayName','LFP calme wake')
 legend
 hold off
 
+%%% Exercice 2
+% 1-
+reap = 100;
+freq = zeros(1,reap);
+for i = 1:length(freq)
+    freq(i) = floor(rand()*100);
+end
+
+% 2-
+amp = zeros(1,reap);
+for i = 1:length(amp)
+    amp(i) = round(rand()*10,1);
+end
+
+% 3-
+SW_inTime = zeros(reap,length(time));
+for i = 1:length(amp)
+    RandStart = floor(rand()*100000);
+    RandEnd = floor(rand()*100000);
+    
+    if RandStart < RandEnd 
+        temp = amp(1,i).*sin(2*pi*freq(1,i).*time);
+        TimesPoints = fix(RandStart:RandEnd);
+        SW_inTime(i, TimesPoints) = temp(1,TimesPoints);
+    elseif RandStart > RandEnd
+        temp = amp(1,i).*sin(2*pi*freq(1,i).*time);
+        TimesPoints = fix(RandEnd:RandStart);
+        SW_inTime(i,TimesPoints) = temp(1,TimesPoints);
+    else 
+        disp('Start and Stop are equal or the length of the rand is too short...')
+    end
+end
 
 
+SW_way_better = sum(SW_inTime);
+
+figure
+plot(time,SW_way_better)
+xlim([40 41])
  
