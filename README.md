@@ -2,6 +2,7 @@
 
 
 ********  PLAN ********************
+
 Base Matlab - A
 - Matlab settings (video tutorial - on seafile) 0
 - Type of variables- storing data  A1
