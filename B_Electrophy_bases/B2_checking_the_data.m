@@ -3,7 +3,7 @@
 % like on the last script
 % First we need to load the data (I put oen example of the data into the
 % data folder for thoses without data to test 
-load('D:\Documents\My_GitHub\Electrophy_Meeting\Data\rat13_hab1.mat') % example 
+load('C:\Users\laura\Documents\DataElectTemp\rat13_hab1.mat') % example 
 
 
 % Delete the variable you don't need 
@@ -35,12 +35,12 @@ Time = 0:dt:tottime-dt; % (we do minus dt because we beggin the vecteur by 0 so 
 % the 5 to 7 are in the Hippocampus and the 8 to 10 are the BLA, 11 to 13
 % are ACC, the 14 to 16 are the PRL and the 4 is the EMG. 
 
-% So first lest tru to plot all the channels for the LHb.
+% So first lets plot all the channels for the LHb.
 figure 
-subplot(3,1,1)
-plot(Time,LFP(1,:),'b')
-title('Ch n°1')
-ylim([-0.5 0.5]) % changing Y scale
+subplot(3,1,1) % Allowing to put several plot on one figure separatly
+plot(Time,LFP(1,:),'b') % 'b' is the color of the ligne. See the documentation. 
+title('Ch n°1') % Put a title on your graph
+ylim([-0.5 0.5]) % changing Y scale (first number is the begging of the x axis, the second is the end)
 subplot(3,1,2)
 plot(Time,LFP(2,:),'b')
 title('Ch n°2')
@@ -48,7 +48,7 @@ ylim([-0.5 0.5]) % changing Y scale
 subplot(3,1,3)
 plot(Time,LFP(3,:),'b')
 title('Ch n°3')
-ylim([-0.5 0.5]) % changing Y scale
+ylim([-0.5 0.5]) 
 
 % What do you see ? The second channel is very bad ! It's for that we
 % absolutly need to check the channels viability before doing any analysis
@@ -57,7 +57,7 @@ ylim([-0.5 0.5]) % changing Y scale
 % If we do the local referancing between 1 and 2 (what's come in mind first
 %, you will have something horrible in the results)
 
-% Let's try to do a local referencing good and one bad, for seeing the
+% Let's try to do a local referencing, one good and one bad, for seeing the
 % differences
 
 local_good = LFP(1,:)-LFP(3,:);
@@ -74,7 +74,7 @@ legend
 % power, because the next script will be on that) from both local ref :
 
 % we gonna use chronux toolbox for calculating quickly the spectrogram 
-% we just need to apply the filtering and the downsampling frist.
+% we just need to apply the filtering and the downsampling first.
 
 
 local_good_filt = ck_filt(local_good,srate,[0.1 500],'band'); % This is a filter wrote by Nelson Totah 
